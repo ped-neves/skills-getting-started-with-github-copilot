@@ -29,6 +29,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         activitiesList.appendChild(activityCard);
 
+        // Add participants section (new)
+        const participantsContainer = document.createElement("div");
+        participantsContainer.className = "participants";
+        const heading = document.createElement("strong");
+        heading.textContent = "Participants:";
+        participantsContainer.appendChild(heading);
+
+        const ul = document.createElement("ul");
+        if (Array.isArray(details.participants) && details.participants.length > 0) {
+          details.participants.forEach((p) => {
+            const li = document.createElement("li");
+            li.textContent = p;
+            ul.appendChild(li);
+          });
+          participantsContainer.appendChild(ul);
+        } else {
+          const empty = document.createElement("div");
+          empty.className = "empty";
+          empty.textContent = "No participants yet.";
+          participantsContainer.appendChild(empty);
+        }
+
+        activityCard.appendChild(participantsContainer);
+
         // Add option to select dropdown
         const option = document.createElement("option");
         option.value = name;
